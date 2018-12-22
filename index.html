@@ -6,14 +6,78 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 	</head>
 	<body>
-		<label>podaj nazwę kraju</label>
-		<input type="text" id="country-name"></input> 
-		<button type="button" id="show-results-button">pokarz wyniki</button>
-		<label>znaleziono</label>
-		<ul id="country-results">
+		<div class="panel">
+			<label class="title">podaj nazwę kraju</label>
+			<input type="text" class="input" id="country-name"></input> 
+			<button type="button" class="button" id="show-results-button">pokaż wyniki</button>
+		</div>
+		<div id="country-results">
 			
-		</ul>
+		</div>
 
+		<script id="country-template" type="x-tmpl-mustache">
+			<table class="table">
+				<tr>
+					<td>
+						<img src={{flag}} class="flag">
+					</td>
+					<td>
+						<p class="country-name">{{name}}</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						podstawowe informacje
+					</td>
+				</tr>
+					<td>
+						stolica
+					</td>
+					<td>
+						{{capital}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						powierzchnia
+					</td>
+					<td>
+						{{area}}
+					</td>
+				</tr>
+				</tr>
+				<tr>
+					<td>
+						populacja
+					</td>
+					<td>
+						{{population}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						język/ki
+					</td>
+					<td>
+						{{#languages}}
+							{{name}}
+						{{/languages}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						waluta
+					</td>
+					<td>
+						{{#currencies}}
+							{{name}}
+						{{/currencies}}
+					</td>
+				</tr>
+			</tabel>
+		</script>
+
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 	</body>
 </html>

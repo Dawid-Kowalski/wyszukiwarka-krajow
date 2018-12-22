@@ -1,6 +1,12 @@
-const countryUrl = "https://restcountries.eu/rest/v1/name/";
+const countryUrl = "https://restcountries.eu/rest/v2/name/";
+
+let countryTemplate = document.getElementById("country-template").innerHTML;
+Mustache.parse(countryTemplate);
+
 let countryResults = document.getElementById("country-results");
 let showResultsButton = document.getElementById("show-results-button");
+
+
 
 showResultsButton.addEventListener("click", function() {
 
@@ -23,47 +29,16 @@ function showCountrysList(resp) {
 
 	let countryName = getCountryName();
 
-	let countryNameFirstBig = (countryName.charAt(0)).toUpperCase() + countryName.substring(1);
+	filtrName(countryName, resp, results);
 
-	for(let i=0; i<resp.length; i++){
-
-		console.log(countryNameFirstBig);
-		console.log(resp[i].name);
-
-		if ((resp[i].name).indexOf(countryNameFirstBig) != -1) {
-			results.push(resp[i]);
-		}
-	}
-
-	let countryNameFirstSmall = (countryNameFirstBig.charAt(0)).toLowerCase() + countryNameFirstBig.substring(1);
-
-	for(let i=0; i<resp.length; i++){
-
-		console.log(countryNameFirstSmall);
-		console.log(resp[i].name);
-
-		if ((resp[i].name).indexOf(countryNameFirstSmall) != -1) {
-			results.push(resp[i]);
-		}
-	}
-	
 
 	while(countryResults.firstChild){
 		countryResults.removeChild(countryResults.firstChild);
 	}
 
 	for(let i=0; i<results.length; i++) {
-		let newUl = document.createElement("li");
-
-		for(let j=0; j<results[i].altSpellings.length-1; j++) {
-			let newLi = document.createElement("li");
-			newLi.innerHTML = results[i].altSpellings[j+1];
-			newUl.appendChild(newLi);
-		}
-
-		countryResults.appendChild(newUl);
-		let newLine = document.createElement("hr");
-		countryResults.appendChild(newLine);
+		let generatedCountry = Mustache.render(countryTemplate, results[i]);
+		countryResults.insertAdjacentHTML("beforeend", generatedCountry);
 	}
 }
 
@@ -77,4 +52,26 @@ function getCountryName() {
 	countryName.toLowerCase();
 
 	return countryName;
+}
+
+function filtrName(countryName, resp, results) {
+
+	let countryNameFirstBig = (countryName.charAt(0)).toUpperCase() + countryName.substring(1);
+
+
+	for(let i=0; i<resp.length; i++){
+
+		if ((resp[i].name).indexOf(countryNameFirstBig) != -1) {
+			results.push(resp[i]);
+		}
+	}
+
+	let countryNameFirstSmall = (countryNameFirstBig.charAt(0)).toLowerCase() + countryNameFirstBig.substring(1);
+
+	for(let i=0; i<resp.length; i++){
+
+		if ((resp[i].name).indexOf(countryNameFirstSmall) != -1) {
+			results.push(resp[i]);
+		}
+	}
 }

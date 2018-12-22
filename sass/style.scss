@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+//for body //
+
+body {
+	background-color: black;
+	font-family: 'Lato', sans-serif;
+}
+
+//for serch panel //
+
+.title {
+	color: white;
+	display: block;
+}
+
+.panel {
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+}
+
+.input {
+  font-size: 16px;
+  padding: 15px 32px;
+  text-align: center;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: 1 px solid black;
+  color: white;
+  font-size: 16px;
+  padding: 15px 32px;
+  text-align: center;
+}
+
+//for table //
+
+.table {
+  background-color: white;
+  border-collapse: collapse;
+  margin-top: 20px;
+  text-align: center;
+  width: 98vw;
+}
+
+.table tr {
+	width: 98vw;
+}
+
+.table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.table td {
+	border: 1px solid black;
+	width: 49vw;
+}
+
+.flag {
+	width: 49vw;
+}
+
+.country-name {
+	font-size: 2em;
+}
+
+.table tr:hover {
+	background-color: #ddd;
+}
